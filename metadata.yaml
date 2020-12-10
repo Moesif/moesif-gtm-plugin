@@ -15,5 +15,5 @@
 homepage: "https://www.moesif.com/"
 documentation: "https://www.moesif.com/implementation/track-user-behaviors-with-browser"
 versions:
-  - sha: 7fe53c014560f72fb521054bde53e6d9d4fb6ec3
+  - sha: f2ede9527e6235aba1a6a0ea650cd27faae0589e
     changeNotes: Initial Version
