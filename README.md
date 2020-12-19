@@ -6,14 +6,18 @@
 
 ## How to install
 
-This plugin is installed within the [Google Tag Manager UI](https://tagmanager.google.com/) and will add [moesif-browser-js](https://www.moesif.com/implementation/track-user-behaviors-with-browser?platform=browser) without any code changes. 
+Moesif has a GTM tag in the [Google Tag Manager template gallery](https://tagmanager.google.com/gallery/#/owners/Moesif/templates/moesif-gtm-plugin).
+This installs the [moesif-browser-js](https://www.moesif.com/implementation/track-user-behaviors-with-browser?platform=browser) script without any code changes. 
 
 ### 1. Add Tag
 
 Log into your [Google Tag Manager account](https://tagmanager.google.com/) and select Tags from the left menu.
-Then, click _New_ from the top right like in the below picture and search for "Moesif API Analytics".
+Then, click _New_ from the top right like in the below picture.
 
 ![Create a new Tag in Google Tag Manager](https://www.moesif.com/docs/images/docs/client-integration/google-tag-manager-add-tag.png)
+
+Select the _Community Template Gallery_ blue banner and search for "Moesif API Analytics".
+Then, click the blue _Add to Workspace_ button.
 
 ### 2. Set Moesif Application Id
 
