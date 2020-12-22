@@ -43,14 +43,16 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "NON_EMPTY"
       }
-    ]
+    ],
+    "help": "The Moesif application id that is obtained from your Moesif account."
   },
   {
     "type": "TEXT",
     "name": "actionName",
     "displayName": "Action Name",
     "simpleValueType": true,
-    "defaultValue": "Page View"
+    "defaultValue": "Page View",
+    "help": "Name of the goal you are tracking such as \"clicked sign up\" or \"made a purchase\""
   },
   {
     "type": "PARAM_TABLE",
@@ -75,7 +77,8 @@ ___TEMPLATE_PARAMETERS___
         },
         "isUnique": false
       }
-    ]
+    ],
+    "help": "Optional metadata object related to this action"
   },
   {
     "type": "GROUP",
@@ -128,7 +131,7 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "SELECT",
         "name": "persistence",
-        "displayName": "",
+        "displayName": "Persistence",
         "macrosInSelect": false,
         "selectItems": [
           {
@@ -144,27 +147,37 @@ ___TEMPLATE_PARAMETERS___
             "displayValue": "None"
           }
         ],
-        "simpleValueType": true
+        "simpleValueType": true,
+        "help": "When set to localStorage (the default setting), will write session info to localStorage and then replicate to a cookie for redundancy. This ensures that if the user clears local storage or visits a different subdomain (like from docs.acmeinc.com to acmeinc.com), there is still a cookie to fall back to and the user can be accurately attributed. This setting is recommended for most applications.\n\nWhen set to cookie, session info and anonymous ids is persisted to cookies only. No local storage is used."
+      },
+      {
+        "type": "TEXT",
+        "name": "persistenceKeyPrefix",
+        "displayName": "Persistence Key Prefix",
+        "simpleValueType": true,
+        "help": "The keys used for saving into local storage and cookies. By default is \u0027moesif_\u0027. You can override the prefix to avoid conflicts if you want to log to multiple Moesif applications."
       },
       {
         "type": "GROUP",
         "name": "cookie",
-        "displayName": "",
-        "groupStyle": "NO_ZIPPY",
+        "displayName": "Cookie Options",
+        "groupStyle": "ZIPPY_OPEN",
         "subParams": [
           {
             "type": "CHECKBOX",
             "name": "crossSiteCookie",
             "checkboxText": "Cross Site Cookie",
             "simpleValueType": true,
-            "defaultValue": false
+            "defaultValue": false,
+            "help": "This enables cross-site requests by adding \"SameSite\u003dNone; Secure\" to the cookie. This is used for special situation such as if your application is embedded in an iframe."
           },
           {
             "type": "CHECKBOX",
             "name": "crossSubdomainCookie",
             "checkboxText": "Cross Subdomain Cookie",
             "simpleValueType": true,
-            "defaultValue": true
+            "defaultValue": true,
+            "help": "When true, the cookie domain will also allow all subdomains of your hostname. This is usually recommended to track anonymous users across multiple properties like https://www.acmeinc.com vs https://docs.acmeinc.com."
           },
           {
             "type": "TEXT",
@@ -176,38 +189,35 @@ ___TEMPLATE_PARAMETERS___
                 "type": "NON_NEGATIVE_NUMBER"
               }
             ],
-            "defaultValue": 365
+            "defaultValue": 365,
+            "help": "Cookie expiration in days. By default this is 365 days."
           },
           {
             "type": "CHECKBOX",
             "name": "secureCookie",
             "checkboxText": "Secure Cookie",
-            "simpleValueType": true
+            "simpleValueType": true,
+            "help": "If eabled, the cookie can only be read on https:// website"
           },
           {
             "type": "TEXT",
             "name": "cookieDomain",
             "displayName": "Cookie Domain",
-            "simpleValueType": true
+            "simpleValueType": true,
+            "help": "To override the domain of the cookie, you can set this such as to *.acmeinc.com"
           }
         ],
-        "enablingConditions": [
-          {
-            "paramName": "persistence",
-            "paramValue": "cookie",
-            "type": "EQUALS"
-          }
-        ]
+        "enablingConditions": []
       },
       {
         "type": "CHECKBOX",
         "name": "debug",
         "checkboxText": "debug",
         "simpleValueType": true,
-        "defaultValue": false
+        "defaultValue": false,
+        "help": "Enable debug mode to print debug info to console or to send to Moesif for technical support."
       }
     ],
-    "enablingConditions": [],
     "groupStyle": "ZIPPY_CLOSED",
     "help": "See https://www.moesif.com/docs/client-integration/browser-js/#configuration-options for more info"
   }
