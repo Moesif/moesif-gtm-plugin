@@ -4,6 +4,10 @@
 
 - [Google Tag Manager account](https://tagmanager.google.com/) is a free application which enables marketing and product teams to quickly add script tags for analytics, attribution tracking, and more without code changes. 
 
+> You can use this plugin alongside a [Moesif server integration](https://www.moesif.com/implementation) to monitor server-side API traffic. This enables you to track your end-to-end customer journey and build cross-platform funnel reports like your _initial sign up_ to _first API call_ conversion rate.
+
+![Diagram of Moesif API monitoring and Google Tag Manager architecture](https://www.moesif.com/docs/images/docs/client-integration/moesif-arch-google-tag-manager.png)
+
 ## How to install
 
 Moesif has a GTM tag in the [Google Tag Manager template gallery](https://tagmanager.google.com/gallery/#/owners/Moesif/templates/moesif-gtm-plugin).
