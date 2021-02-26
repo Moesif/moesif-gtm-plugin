@@ -15,6 +15,8 @@
 homepage: "https://www.moesif.com/"
 documentation: "https://www.moesif.com/implementation/track-user-behaviors-with-browser"
 versions:
+  - sha: a221f42fcd851d3b3b0d21625f5f4a23fcfa7eff
+    changeNotes: Fixed bug where campaign data not captured if identifyUser not called
   - sha: 34a4d77d1b5b214bbfcabf76472f7471682a0f2b
     changeNotes: Add persistenceKeyPrefix option and additional help text 
   - sha: a62cf1c0ca6adc8018146eb05229a41899c69fb9
