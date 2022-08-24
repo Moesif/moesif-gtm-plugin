@@ -45,11 +45,21 @@ For more info on how to create custom triggers, see [Google's documentation.](ht
 
 When the tag is fired, the tag will log a [user action](https://www.moesif.com/docs/getting-started/user-actions/) to Moesif.
 
-### Identifying users
+### Event metadata
+
+The Tag also supports [event metadata](https://www.moesif.com/docs/getting-started/user-actions/#event-metadata) which is a table of key/value pairs. 
+The tag also supports dynamic variables. 
+
+![Add Moesif in Google Tag Manager](https://www.moesif.com/docs/images/docs/client-integration/google-tag-manager-add-event-metadata.png)
 
 You can access any of the [moesif-browser-js APIs](https://www.moesif.com/docs/client-integration/browser-js/) via `window.moesif` including [identifyUser()](https://www.moesif.com/docs/client-integration/browser-js/#identifying-users). This can be useful since Google Tag Manager doesn't support tracking user ids directly. 
 
-When a user logs into your app, identify the person with Moesif like so: 
+### Identifying users
+
+When you know the user's id such as after sign in, call `identifyUser`.
+This tells Moesif who the current user is so their actions can be linked to a user profile.
+
+Besides the userId, you can also save related properties such as user demographics and subscription information.
 
 ```javascript
 window.moesif.identifyUser("12345", {
@@ -64,11 +74,32 @@ window.moesif.identifyUser("12345", {
   },
 });
 ```
-### Event metadata
 
-When the tag is fired, the Moesif track() method will be called with your chosen action name.
-The Tag also supports [event metadata](https://www.moesif.com/docs/getting-started/user-actions/#event-metadata) which is a table of key/value pairs. 
-The tag also supports dynamic variables. 
+The recommended place to call `identifyUser` is after the user logs in and you know their real user id.
 
-![Add Moesif in Google Tag Manager](https://www.moesif.com/docs/images/docs/client-integration/google-tag-manager-add-event-metadata.png)
+> Do not call `identifyUser` for anonymous users. Moesif will track these users automatically.
+
+### Identifying companies
+
+In addition to identifying users, you can also identify the company for account-level tracking. Besides the companyId, you can also save related properties such as company demographics and website domain.
+
+```javascript
+// Only the first argument is a string containing the company id. This is the only required field.
+// The second argument is a object used to store a company info like plan, MRR, and company demographics.
+// The third argument is a string containing company website or email domain. If set, Moesif will enrich your profiles with publicly available info.
+metadata = {
+  orgName: "Acme, Inc",
+  planName: "Free Plan",
+  dealStage: "Lead",
+  mrr: 24000,
+  demographics: {
+    alexaRanking: 500000,
+    employeeCount: 47,
+  },
+};
+
+window.moesif.identifyCompany("67890", metadata, "acmeinc.com");
+```
+
+> If you call both identifyUser() and identifyCompany() in the same session, then Moesif will automatically associate the user with the company.
 
