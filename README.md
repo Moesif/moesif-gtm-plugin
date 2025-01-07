@@ -103,3 +103,13 @@ window.moesif.identifyCompany("67890", metadata, "acmeinc.com");
 
 > If you call both identifyUser() and identifyCompany() in the same session, then Moesif will automatically associate the user with the company.
 
+### Tracking actions directly
+Since you have the entire [moesif-browser-js API](https://www.moesif.com/docs/client-integration/browser-js/) 
+available through `window.moesif`, you can track actions directly using 
+the [`track()`](https://www.moesif.com/docs/client-integration/browser-js/#track-user-actions) function:
+
+```javascript
+window.moesif.track('clicked_sign_up', {
+  button_label: 'Get Started'
+});
+```
